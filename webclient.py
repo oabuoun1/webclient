@@ -56,11 +56,28 @@ def getTask(conn,taskID):
         print('Final x = %d\n' % (x))
         conn.close()
 '''
+def prime_factors(n):
+    i = 2
+    factors = []
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
 
 def process_task(data):
-    time.sleep(10)
+    result = {}
+    print("data: " + str(data))
+    for x in range(data["from"],data["to"]):
+        result[str(x)] = prime_factors(x) 
+        time.sleep(data["delay"])
+    
     result_id = random.randrange(1000,9999)
-    return result_id, data
+    return result_id, result
 
 def send(url, *args):
     global conn, replica_id, task_id
