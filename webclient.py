@@ -115,7 +115,7 @@ def send_result(*args):
 def send_finished():
     global task_id
     finished_at = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    return send("/task/finished",{"task_id": task_id, "finished_at": finished_at})
+    return send("/task/finished",{"task_id": task_id, "finished_at": time.time()})
 
 def send_log(result):
     return 
